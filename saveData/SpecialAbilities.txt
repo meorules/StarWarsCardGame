@@ -1,0 +1,15 @@
+Sensitive 1 10
+Theif 1 10
+Marksman 1 10
+Droid 0 5
+Negotiater 0 5
+Crafty 0 5
+Shield 0 5
+Jedi 1 15
+Sith 0 15
+Wisdom 1 20
+Tactical 1 20
+Instinctive 1 20
+Ignorance 0 20 
+Spontaneous 0 20 
+Planned 0 20 

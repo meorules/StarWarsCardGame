@@ -1,0 +1,15 @@
+ForceSensetive 1 10
+Marksman 1 10
+Swordsmaster 1 10
+Sheild 1 10
+ForceDeficient 0 5
+Negotiater 0 5
+Crafty 0 5
+Jedi 1 15
+Sith 0 15
+Wisdom 1 20
+Tactical 1 20
+Instinctive 1 20
+Spontaneous 0 20 
+Entrinsic 0 20 
+Ignorance 0 20 

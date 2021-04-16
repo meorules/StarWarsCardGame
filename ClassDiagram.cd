@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="AbilityCard" Collapsed="true">
+    <Position X="0.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAkAAAAIAAAAgAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AbilityCard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardBattleWindow" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CardBattleWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardDeckWindow" Collapsed="true">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CardDeckWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardLibrary" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IoAAAAAAAAAAAACAAAAACAEAAABAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>CardLibrary.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CardLibraryWindow" Collapsed="true">
+    <Position X="0.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAABEAAABAAAAAAAAAAAAAgABAAAAAAAAA=</HashCode>
+      <FileName>CardLibraryWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EasyGraphics" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QlUkgCAQCRpwwM4DwxgMUlBDhlAB0KAoERR0MEyUE1A=</HashCode>
+      <FileName>EasyGraphics.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FightingCard" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAgAAAEAAIAAAAAAAAAAAAAQAAAAAAABAA=</HashCode>
+      <FileName>FightingCard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenuWindow" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAEAAEAAIBAAAkAAQAAAAAAgABAAAAAAAAA=</HashCode>
+      <FileName>MainMenuWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpecialAbilities" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAIAABAAAAAAAACAAAAEAACAAABAAAAAABAAAAAAAAE=</HashCode>
+      <FileName>SpecialAbilities.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpecialAbility" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACQAAAAAAAAAAAAAQQQAAAAAAAAAAAEAEAAAAAAA=</HashCode>
+      <FileName>SpecialAbility.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpecialFightingCard" Collapsed="true">
+    <Position X="2.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAgAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>SpecialFightingCard.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="User" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAAAACAAABAAAAAQABAAAAAAAAAAAEAgECAAA=</HashCode>
+      <FileName>User.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserMenuWindow" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserMenuWindow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Users" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAAAAKAAAAAAAAABAAAAAAAAAABAAAAAABAAIAAAgAQ=</HashCode>
+      <FileName>Users.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="listTemplate&lt;listType&gt;" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAgAEACAAAACAAACAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>listTemplate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Window" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAABAAAAAAAQAAAAggABIACAAAAAA=</HashCode>
+      <FileName>Window.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Card" Collapsed="true">
+    <Position X="1.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAhAAQAgAAAAAAQAAAIAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Card.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="CREATEINFO" Collapsed="true">
+    <Position X="12.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAQAQAIAAAAAAAAAAAAIAAIAAAAAAAA=</HashCode>
+      <FileName>EasyGraphics.cpp</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
