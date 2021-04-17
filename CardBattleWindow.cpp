@@ -43,12 +43,6 @@ void CardBattleWindow::onDraw()
     }
   }
 
-
-  //Making Pointers to the various types of cards to be used later
-  FightingCard* fC=nullptr;
-  SpecialFightingCard* sFC=nullptr;
-  AbilityCard* aC=nullptr;
-
   //drawing User Card Deck
   setTextColour(CYAN);
   setFont(28, L"Univers Bold");
@@ -81,16 +75,18 @@ void CardBattleWindow::onDraw()
   if (selectedUserCard != nullptr) {
     setFont(12, L"News Gothic Bold");
     if (selectedUserCardType == ability) {
+      setPenColour(16777215, 3);
       setBackColour(MAGENTA);
       drawRectangle(945, 345, 85, 50, true);
       drawText(L"Use Ability", 950, 350);
       drawText(aC->getAbilityName().c_str(), 950, 370);
       if (userSelectedStat == specialability) {
-        setPenColour(65535, 4);
+        setPenColour(65535, 3);
         drawRectangle(945, 345, 85, 50, false);
       }
     }
     else if (selectedUserCardType == fighting) {
+      setPenColour(16777215, 3);
       setBackColour(DARK_BLUE);
       setTextColour(WHITE);
       drawRectangle(900, 345, 85, 30, true);
@@ -102,8 +98,8 @@ void CardBattleWindow::onDraw()
       drawRectangle(990, 380, 85, 30, true);
       drawText(L"Melee", 995, 385);
 
+      setPenColour(65535, 3);
       switch (userSelectedStat) {
-        setPenColour(65535, 4);
       case force:
         drawRectangle(900, 345, 85, 30, false);
         break;
@@ -119,6 +115,7 @@ void CardBattleWindow::onDraw()
       }
     }
     else if (selectedUserCardType == special) {
+      setPenColour(16777215, 3);
       setBackColour(MAGENTA);
       drawRectangle(945, 345, 85, 50, true);
       drawText(L"Use Ability", 950, 350);
@@ -135,8 +132,8 @@ void CardBattleWindow::onDraw()
       drawRectangle(990, 445, 85, 30, true);
       drawText(L"Melee", 995, 450);
 
+      setPenColour(65535, 3);
       switch (userSelectedStat) {
-        setPenColour(65535, 4);
       case specialability:
         drawRectangle(945, 345, 85, 50, false);
         break;
@@ -182,13 +179,6 @@ void CardBattleWindow::onLButtonDown(UINT nFlags, int x, int y)
     delete this;
   }
   else {
-    for (int j = 0; j < CardLibrary::returnInstance()->returnList()->size(); j++)
-    {
-      if (CardLibrary::returnInstance()->returnList()->at(j)->hitTest(x, y)) {
-          selectedUserCard = CardLibrary::returnInstance()->returnList()->at(j);
-        
-      }
-    }
     if (selectedUserCardType == ability) {
       //      drawRectangle(945, 345, 85, 50, true);
       if (x > 945 && x < 1030 && y>345 && y < 395) {
@@ -216,25 +206,33 @@ void CardBattleWindow::onLButtonDown(UINT nFlags, int x, int y)
 
     }
     else if (selectedUserCardType == special) {
-     if (x > 945 && x < 1030 && y>345 && y < 395) {
-      userSelectedStat = specialability;
+      if (x > 945 && x < 1030 && y>345 && y < 395) {
+        userSelectedStat = specialability;
+      }
+      //drawRectangle(900, 410, 85, 30, true); Force
+      //drawRectangle(900, 445, 85, 30, true); Block 
+      //drawRectangle(990, 410, 85, 30, true); Gunnin
+      //drawRectangle(990, 445, 85, 30, true); Melee
+      else if (x > 900 && x < 985 && y>410 && y < 440) {
+        userSelectedStat = force;
+      }
+      else if (x > 900 && x < 985 && y>445 && y < 475) {
+        userSelectedStat = block;
+      }
+      else if (x > 990 && x < 1075 && y>410 && y < 440) {
+        userSelectedStat = gunnin;
+      }
+      else if (x > 990 && x < 1075 && y>445 && y < 475) {
+        userSelectedStat = melee;
+      }
     }
-     //drawRectangle(900, 410, 85, 30, true); Force
-     //drawRectangle(900, 445, 85, 30, true); Block 
-     //drawRectangle(990, 410, 85, 30, true); Gunnin
-     //drawRectangle(990, 445, 85, 30, true); Melee
-     else if (x > 900 && x < 985 && y>410 && y < 440) {
-       userSelectedStat = force;
-     }
-     else if (x > 900 && x < 985 && y>445 && y < 475) {
-       userSelectedStat = block;
-     }
-     else if (x > 990 && x < 1075 && y>410 && y < 440) {
-       userSelectedStat = gunnin;
-     }
-     else if (x > 990 && x < 1075 && y>445 && y < 475) {
-       userSelectedStat = melee;
-     }
+    if (y > 580) {
+      for (int j = 0; j < CardLibrary::returnInstance()->returnList()->size(); j++)
+      {
+        if (CardLibrary::returnInstance()->returnList()->at(j)->hitTest(x, y)) {
+          selectedUserCard = CardLibrary::returnInstance()->returnList()->at(j);
+        }
+      }
     }
   }
   onDraw();
