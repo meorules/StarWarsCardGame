@@ -5,7 +5,7 @@
 MainMenuWindow::MainMenuWindow(HINSTANCE hInsantce, int width, int height) : Window(hInsantce, width, height)
 {
   createWindow(hInstance, width, height);
-  currentState = browsing;
+  currentState = currentstate::browsing;
 }
 
 void MainMenuWindow::onDraw() {
@@ -13,7 +13,7 @@ void MainMenuWindow::onDraw() {
   drawBitmap(backgroundFile, 0, 0, 600, 400);
   setTextColour(CYAN);
 
-  setFont(28, L"Univers Bold");
+  setFont(28, L"Ebrima Bold");
   drawText(L"Main Menu", 300, 35);
 
   //Output Text
@@ -66,22 +66,27 @@ void MainMenuWindow::onLButtonDown(UINT nFlags, int x, int y)
 {
   //Collecting Username
   if (x > 125 && x < 325 && y>200 && y < 220) {
-    currentState = collectingUsername;
+    currentState = currentstate::collectingUsername;
   }
   //Collecting Password
   else if (x > 125 && x < 325 && y>230 && y < 250) {
-    currentState = collectingPassword;
+    currentState = currentstate::collectingPassword;
   }
   //Sign up Button  drawRectangle(370, 185, 60, 30, true);
   else if (x>370 && x<430 && y>185 && y<215) {
-    int found = Users::returnInstance()->findUser(User(currentusernamefield));
-    if (found == -1) {
-      Users::returnInstance()->addUser(User(currentusernamefield, currentpasswordfield,0,0));
-      currentusernamefield = "";
-      currentpasswordfield = "";
+    if (!((currentusernamefield == "" || currentusernamefield == " ") || (currentpasswordfield == "" || currentpasswordfield == " ") )) {
+      int found = Users::returnInstance()->findUser(User(currentusernamefield));
+      if (found == -1) {
+        Users::returnInstance()->addUser(*(new User(currentusernamefield, currentpasswordfield, 0, 0, 0)));
+        currentusernamefield = "";
+        currentpasswordfield = "";
+      }
+      else {
+        outputText = "Username is already taken";
+      }
     }
     else {
-      outputText = "Username is already taken";
+      outputText = "Username and/or Password cannot be empty";
     }
   }
   //Login Button  drawRectangle(370, 225, 60, 30, true);
@@ -112,7 +117,7 @@ void MainMenuWindow::onLButtonDown(UINT nFlags, int x, int y)
   }
   //Default 
   else{
-    currentState = browsing;
+    currentState = currentstate::browsing;
   }
   onDraw();
 }
@@ -122,7 +127,7 @@ void MainMenuWindow::onChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 
   string character = string(1, char(nChar));
 
-  if (currentState == 1) {
+  if (currentState == currentstate::collectingUsername) {
     if (nChar == 8) {
       currentusernamefield = currentusernamefield.substr(0, currentusernamefield.length() - 1);
     }
@@ -135,7 +140,7 @@ void MainMenuWindow::onChar(UINT nChar, UINT nRepCnt, UINT nFlags)
       }
     }
   }
-  else if (currentState == 2) {
+  else if (currentState == currentstate::collectingPassword) {
     if (nChar == 8) {
       currentpasswordfield = currentpasswordfield.substr(0, currentpasswordfield.length() - 1);
     }

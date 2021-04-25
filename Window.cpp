@@ -16,12 +16,12 @@ void Window::onDraw()
   //Menu Title
   drawBitmap(L".\\imageAssets\\StarWarsLogo.bmp", 30, 30, 115, 50, 0x00FFFFFF);
   setTextColour(YELLOW);
-  setFont(16, L"Univers Bold");
+  setFont(16, L"Ebrima Bold");
   drawText(L"Trading Card", 150, 30);
-  setFont(24, L"Univers Bold");
+  setFont(24, L"Ebrima Bold");
   drawText(L"Game", 170, 45);
-  setFont(52, L"Univers Bold");
-  drawText(L":", 275, 15);
+  setFont(52, L"Ebrima Bold");
+  drawText(L":", 280, 0);
 
 
   EasyGraphics::onDraw();

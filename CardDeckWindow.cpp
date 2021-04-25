@@ -8,7 +8,6 @@ CardDeckWindow::CardDeckWindow(HINSTANCE hInsantce, int width, int height, User*
 
 CardDeckWindow::~CardDeckWindow()
 {
-
 }
 
 void CardDeckWindow::onDraw()
@@ -16,7 +15,7 @@ void CardDeckWindow::onDraw()
   drawBitmap(backgroundFile, 0, 0, width, height);
   setTextColour(CYAN);
   //Title
-  setFont(28, L"Univers Bold");
+  setFont(28, L"Ebrima Bold");
   drawText(L"Current User Deck", 300, 35);
 
   //Drawing Card Collection
@@ -68,7 +67,7 @@ void CardDeckWindow::onDraw()
 
   //drawing Card Deck
   setTextColour(CYAN);
-  setFont(28, L"Univers Bold");
+  setFont(28, L"Ebrima Bold");
   drawText(L"Card Deck", 30, 530);
   for (int i = 0; i < 5; i++) {
     currentMenuUser->returnCardDeck(i)->draw(this, 25 + (i) * (cardWidth + 15), 600, cardWidth, cardHeight);

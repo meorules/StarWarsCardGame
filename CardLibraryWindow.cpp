@@ -19,7 +19,7 @@ void CardLibraryWindow::onDraw()
   drawBitmap(backgroundFile, 0, 0, width, height);
   setTextColour(CYAN);
   //Title
-  setFont(28, L"Univers Bold");
+  setFont(28, L"Ebrima Bold");
   drawText(L"Card Library", 300, 35);
   //25-950 x 100-480
   const int xSpace = 925;

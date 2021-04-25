@@ -1,6 +1,6 @@
 #include "AbilityCard.h"
 
-AbilityCard::AbilityCard(string cardId, wchar_t* cardImage,bool good, string specialAbilityName, bool stats[4]) : Card(cardId,cardImage,good),noOfStatsAffected(0)
+AbilityCard::AbilityCard(string cardId, string cardImage,bool good, string specialAbilityName, bool stats[4]) : Card(cardId,cardImage,good),noOfStatsAffected(0)
 {
 
   ability = &SpecialAbilities::returnInstance()->returnList()->at(SpecialAbilities::returnInstance()->findAbility(SpecialAbility(specialAbilityName)));
@@ -21,8 +21,7 @@ void AbilityCard::draw(EasyGraphics* canvas, int x, int y, int width, int height
   Card::draw(canvas, x, y, width, height);
 
   canvas->setFont(width / 10 - 1, L"Times New Roman Bold");
-  wchar_t* specialAbilityNameW = stringToWchar(ability->getName());
-  canvas->drawText(specialAbilityNameW, x + 8, y + 0.5 * height + 15);
+  canvas->drawText((ability->getName()).c_str(), x + 8, y + 0.5 * height + 15);
 
   if (noOfStatsAffected == 2) {
     if (statsAffected[0] == 1) 
@@ -43,4 +42,19 @@ void AbilityCard::draw(EasyGraphics* canvas, int x, int y, int width, int height
 string AbilityCard::getAbilityName()
 {
   return ability->getName();
+}
+
+SpecialAbility* AbilityCard::getAbility()
+{
+  return ability;
+}
+
+bool AbilityCard::getStatAffected(int cardStat)
+{
+  return statsAffected[cardStat];
+}
+
+Card* AbilityCard::copyCard()
+{
+  return new AbilityCard(*this);
 }

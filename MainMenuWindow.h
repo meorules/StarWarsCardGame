@@ -20,11 +20,11 @@ private:
   virtual void onChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 
 
-  enum currentState {
+  enum class currentstate {
     browsing, collectingUsername, collectingPassword
   };
 
-  currentState currentState;
+  currentstate currentState;
 
 
   string outputText;

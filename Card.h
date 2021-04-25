@@ -8,7 +8,7 @@ using namespace std;
 class Card
 {
 public:
-  Card(string cardId,wchar_t* cardImage,bool good);
+  Card(string cardId,string cardImageS,bool good);
   Card();
   ~Card();
 
@@ -16,7 +16,7 @@ public:
 
   virtual void draw(EasyGraphics* canvas, int x, int y, int width, int height);
 
-  static wchar_t* stringToWchar(string toConvert);
+  virtual Card* copyCard() = 0;
 
   bool hitTest(int x, int y);
 

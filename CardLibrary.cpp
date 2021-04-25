@@ -31,10 +31,10 @@ vector<Card*>* CardLibrary::returnList()
 
 void CardLibrary::loadCards()
 {
-  if (returnInstance()->cardDatabase->returnList()->size() > 0) {
-    //need to save and reload cards per user
-    returnInstance()->cardDatabase->returnList()->clear();
-  }
+  //if (returnInstance()->cardDatabase->returnList()->size() > 0) {
+  //  //need to save and reload cards per user
+  //  returnInstance()->cardDatabase->returnList()->clear();
+  //}
   ifstream fin;
   string fileName = ".\\saveData\\Cards.txt";
   fin.open(fileName);
@@ -46,22 +46,20 @@ void CardLibrary::loadCards()
     fin >> cardType >> cardName >> cardImageS >> good;
 
     while (!fin.eof()) {
-      cardImageS = ".\\imageAssets\\"+ cardImageS + ".bmp";
-      wchar_t* cardImageW = Card::stringToWchar(cardImageS);
 
       Card* current;
 
       if (cardType == "Fighting") {
         fin >> force >> melee >> block >> gunnin;
-        current = new FightingCard(cardName, cardImageW, good, force, melee, block, gunnin);
+        current = new FightingCard(cardName, cardImageS, good, force, melee, block, gunnin);
       }
       else if (cardType == "Ability") {
         fin >> specialAbilityName >> statsAffected[0] >> statsAffected[1] >> statsAffected[2] >> statsAffected[3];
-        current = new AbilityCard(cardName, cardImageW, good, specialAbilityName, statsAffected);
+        current = new AbilityCard(cardName, cardImageS, good, specialAbilityName, statsAffected);
       }
       else {
         fin >> force >> melee >> block >> gunnin >> specialAbilityName >> statAffected;
-        current = new SpecialFightingCard(cardName, cardImageW, good, force, melee, block, gunnin, specialAbilityName, statAffected);
+        current = new SpecialFightingCard(cardName, cardImageS, good, force, melee, block, gunnin, specialAbilityName, statAffected);
       }
       instance->cardDatabase->addItem(current);
       fin >> cardType >> cardName >> cardImageS >> good;
@@ -70,6 +68,23 @@ void CardLibrary::loadCards()
   fin.close();
 }
 
+
+std::vector<Card*> CardLibrary::generateCardCollection(int size)
+{
+  vector<Card*> cardCollection;
+  vector <int> cardOrder;
+
+  for (int i = 0; i < returnInstance()->cardDatabase->returnList()->size(); i++)
+    cardOrder.push_back(i);
+
+  shuffle(cardOrder.begin(), cardOrder.end(), random_device());
+
+  for (int i = 0; i < size; i < i++) {
+    cardCollection.push_back(returnInstance()->cardDatabase->returnList()->at(cardOrder.at(i)));
+  }
+
+  return cardCollection;
+}
 
 CardLibrary::~CardLibrary()
 {

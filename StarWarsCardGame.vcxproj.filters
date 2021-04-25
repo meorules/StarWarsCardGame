@@ -66,6 +66,12 @@
     <ClCompile Include="SpecialAbilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Opponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBattle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EasyGraphics.h">
@@ -119,6 +125,12 @@
     <ClInclude Include="Card.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Opponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBattle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
@@ -128,6 +140,9 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="saveData\SpecialAbilities.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="saveData\Users.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
