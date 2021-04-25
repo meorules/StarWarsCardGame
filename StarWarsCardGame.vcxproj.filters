@@ -66,9 +66,6 @@
     <ClCompile Include="SpecialAbilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Opponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameBattle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

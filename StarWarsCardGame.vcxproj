@@ -154,7 +154,6 @@
     <ClCompile Include="FightingCard.cpp" />
     <ClCompile Include="GameBattle.cpp" />
     <ClCompile Include="MainMenuWindow.cpp" />
-    <ClCompile Include="Opponent.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SpecialAbilities.cpp" />
     <ClCompile Include="SpecialAbility.cpp" />
