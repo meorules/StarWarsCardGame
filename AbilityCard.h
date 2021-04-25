@@ -22,8 +22,6 @@ public:
 private:
   SpecialAbility* ability;
   int noOfStatsAffected;
-  bool statsAffected[4];
-  const wchar_t* statNames[4] = { L"Force",L"Block",L"Gunnin",L"Melee" };
-
+  bool statsAffected[4]= { L"Force",L"Block",L"Gunnin",L"Melee" };
 };
 
