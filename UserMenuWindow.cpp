@@ -7,7 +7,6 @@ UserMenuWindow::UserMenuWindow(HINSTANCE hInsantce, int width, int height, User*
 
 UserMenuWindow::~UserMenuWindow()
 {
-
 }
 
 void UserMenuWindow::onDraw()
@@ -16,23 +15,25 @@ void UserMenuWindow::onDraw()
   drawBitmap(backgroundFile, 0, 0, width, height);
   setTextColour(CYAN);
   //Title
-  setFont(28, L"Univers Bold");
+  setFont(28, L"Ebrima Bold");
   drawText(L"User Main Menu", 300, 35);
 
   //Currently Signed in as
   setFont(12, L"Times New Roman Bold");
   string userNameText = "Currently Signed in as " + currentMenuUser->getName();
-  wchar_t* currentlySignedInW = Card::stringToWchar(userNameText);
-  drawText(currentlySignedInW, 10, 305);
+  drawText(userNameText.c_str(), 10, 305);
 
   //Current User Record
-  setFont(18, L"Univers Bold");
+  setFont(18, L"Ebrima Bold");
   drawText(L"Current Record", 10, 90);
-  setFont(14, L"Univers Bold");
+  setFont(14, L"Ebrima Bold");
   drawText(L"Wins: ", 10, 120);
   drawText(L"Losses: ", 10, 150);
+  drawText(L"Draws: ", 10, 180);
   drawText(to_string(currentMenuUser->getWins()).c_str(), 100, 120);
   drawText(to_string(currentMenuUser->getLosses()).c_str(), 100, 150);
+  drawText(to_string(currentMenuUser->getDraws()).c_str(), 100, 180);
+
 
 
 
@@ -110,7 +111,7 @@ void UserMenuWindow::onLButtonDown(UINT nFlags, int x, int y)
     CardBattleWindow* main = new CardBattleWindow(hInstance, 1200, 800, currentMenuUser);
     DestroyWindow(getHWND());
     main->waitForClose();
-    delete this;
+    delete main;
   }
 }
 

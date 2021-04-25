@@ -152,7 +152,9 @@
     <ClCompile Include="CardLibraryWindow.cpp" />
     <ClCompile Include="EasyGraphics.cpp" />
     <ClCompile Include="FightingCard.cpp" />
+    <ClCompile Include="GameBattle.cpp" />
     <ClCompile Include="MainMenuWindow.cpp" />
+    <ClCompile Include="Opponent.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SpecialAbilities.cpp" />
     <ClCompile Include="SpecialAbility.cpp" />
@@ -171,7 +173,9 @@
     <ClInclude Include="CardLibraryWindow.h" />
     <ClInclude Include="EasyGraphics.h" />
     <ClInclude Include="FightingCard.h" />
+    <ClInclude Include="GameBattle.h" />
     <ClInclude Include="MainMenuWindow.h" />
+    <ClInclude Include="Opponent.h" />
     <ClInclude Include="SpecialAbilities.h" />
     <ClInclude Include="SpecialAbility.h" />
     <ClInclude Include="SpecialFightingCard.h" />
@@ -187,6 +191,7 @@
   <ItemGroup>
     <Text Include="saveData\Cards.txt" />
     <Text Include="saveData\SpecialAbilities.txt" />
+    <Text Include="saveData\Users.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

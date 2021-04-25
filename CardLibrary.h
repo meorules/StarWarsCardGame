@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <random>
+#include <algorithm>
 
 #include "Card.h"
 
@@ -23,6 +25,9 @@ public:
 
   static void loadCards();
 
+  vector<Card*> generateCardCollection(int size);
+
+  int findCardIndex(Card* itemToFind) { return cardDatabase->findItem(itemToFind); }
 
 private:
   static CardLibrary* instance;

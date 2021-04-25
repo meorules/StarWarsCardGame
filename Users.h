@@ -1,12 +1,13 @@
 #pragma once
 #include "User.h"
 #include "listTemplate.h"
+#include <fstream>
+
 class Users
 {
 public:
   ~Users();
   void addUser(User newUser);
-  bool deleteUser(User newUser);
   int findUser(User userName);
   User* returnUser(int index);
 
@@ -17,9 +18,10 @@ public:
 
 private:
   Users();
-
+  bool deleteUser(User newUser);
   listTemplate<User>* userList;
   static Users* instance;
-
+  static void loadUsers();
+  static void saveUsers();
 };
 

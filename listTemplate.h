@@ -9,6 +9,7 @@ class listTemplate
 {
 public:
   listTemplate();
+  listTemplate(vector<listType> typeList);
   ~listTemplate();
 
   int findItem(listType itemToFind);
@@ -18,14 +19,20 @@ public:
   vector<listType>* returnList();
 
 private:
-  vector <listType>* list;
+  vector <listType> list;
 
 };
+
+template <class listType>
+listTemplate<listType>::listTemplate(vector<listType> typeList)
+{
+  list = typeList;
+}
+
 
 template<class listType>
 inline listTemplate<listType>::listTemplate()
 {
-  list = new vector<listType>;
 }
 
 template<class listType>
@@ -37,8 +44,8 @@ inline listTemplate<listType>::~listTemplate()
 template<class listType>
 inline int listTemplate<listType>::findItem(listType itemToFind)
 {
-  for (int counter = 0; counter < list->size(); counter++) {
-    bool check = list->at(counter) == itemToFind;
+  for (int counter = 0; counter < list.size(); counter++) {
+    bool check = list.at(counter) == itemToFind;
     if (check) {
       return counter;
     }
@@ -50,7 +57,7 @@ inline int listTemplate<listType>::findItem(listType itemToFind)
 template<class listType>
 inline vector<listType>* listTemplate<listType>::returnList()
 {
-  return list;
+  return &list;
 }
 
 template<class listType>
@@ -58,7 +65,7 @@ inline bool listTemplate<listType>::deleteItem(listType username)
 {
   int found = findItem(username);
   if (found != -1) {
-    list->erase(found+list->begin());
+    list.erase(found+list.begin());
     return true;
   }
   return false;
@@ -67,5 +74,7 @@ inline bool listTemplate<listType>::deleteItem(listType username)
 template<class listType>
 inline void listTemplate<listType>::addItem(listType newItem)
 {
-  list->push_back(newItem);
+  if (findItem(newItem) == -1) {
+    list.push_back(newItem);
+  }
 }

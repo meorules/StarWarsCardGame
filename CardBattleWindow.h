@@ -2,14 +2,13 @@
 #include "Window.h"
 #include "UserMenuWindow.h"
 #include "listTemplate.h"
+#include "GameBattle.h"
+#include <functional>
+#include <string>
 
-enum cardStat {
-  nothing,force,melee,block,gunnin,specialability
-};
+using namespace std;
+using namespace std::placeholders;
 
-enum cardType {
-  none,fighting,special,ability
-};
 class CardBattleWindow :
     public Window
 {
@@ -21,27 +20,18 @@ public:
   void onDraw();
 
 private:
-
   void onCreate();
   void onLButtonDown(UINT nFlags, int x, int y);
-  void applyStatChange(bool isUser, cardStat, int change);
+  void resetSelected();
 
+  void opponentAttackChoices();
+  
   string outputText;
-
-
-  Card opponentDeck[5];
-  User* opponent;
-  Card* selectedAICard;
-  int opponentScore;
-
-
-  Card userDeck[5];
+  GameBattle battle;
   cardType selectedUserCardType;
   User* currentMenuUser;
   Card* selectedUserCard;
   cardStat userSelectedStat;
-  int userScore;
-
 
   FightingCard* fC =nullptr;
   SpecialFightingCard* sFC = nullptr;
@@ -49,5 +39,9 @@ private:
 
   const int cardWidth = 120;
   const int cardHeight = 150;
+
+  oppAttack attack;
+
+  int gameEndState;
 };
 

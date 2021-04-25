@@ -1,30 +1,29 @@
 #include "User.h"
 
-User::User(string username, string password,int wins,int losses) : userName(username), password(password),userRecord(gameRecord(wins,losses))
+User::User(string username, string password,int wins,int losses,int draws) : userName(username), password(password),userRecord(gameRecord(wins,losses,draws))
 {
   //For now will give 10 random cards to the user. 
-  vector<Card*>* cardLibrary = CardLibrary::returnInstance()->returnList();
-  
-  
+  cardCollection = CardLibrary::returnInstance()->generateCardCollection(10);
 
-  for (int i = 0; i < cardLibrary->size(); i++)
-    cardOrder.push_back(i);
-
-  shuffle(cardOrder.begin(), cardOrder.end(), random_device());
-
-  for (int i = 0; i < 10; i < i++) {
-    cardCollection.addItem(cardLibrary->at(cardOrder.at(i)));
-    if (i < 5) {
+    for(int i=0;i<5;i++){
       addCardToDeck(cardCollection.returnList()->at(i));
     }
-  }
-
-
 }
 
 //used purely for comparison operations
-User::User(string username) : userName(username), password(""), userRecord(gameRecord(0, 0))
+User::User(string username) : userName(username), password(""), userRecord(gameRecord(0, 0,0))
 {
+}
+
+User::User(string username, string password, int wins, int losses, int draws, vector<int> cardIndices) : userName(username), password(password), userRecord(gameRecord(wins, losses, draws))
+{
+  for (int i = 0; i < cardIndices.size(); i++) {
+    addCardToCollection(cardIndices.at(i));
+  }
+
+  for (int i = 0; i < 5; i++) {
+    addCardToDeck(cardCollection.returnList()->at(i));
+  }
 }
 
 User::~User()
@@ -36,6 +35,24 @@ string User::getName()
   return userName;
 }
 
+
+void User::addRandomCard()
+{
+  if (cardCollection.returnList()->size() != CardLibrary::returnInstance()->returnList()->size()) {
+    srand(time(NULL));
+    bool added = false;
+    while (!added) {
+      int newCardIndex = rand() % CardLibrary::returnInstance()->returnList()->size();
+      if (checkCardInCollection(CardLibrary::returnInstance()->returnList()->at(newCardIndex)) == -1) {
+        cardCollection.addItem(CardLibrary::returnInstance()->returnList()->at(newCardIndex));
+        added = true;
+      }
+      else {
+        newCardIndex = rand() % CardLibrary::returnInstance()->returnList()->size();
+      }
+    }
+  }
+}
 
 bool User::checkPassword(string currentPassword) {
   if (this->password == currentPassword) {
@@ -49,11 +66,17 @@ bool User::checkPassword(string currentPassword) {
 void User::addCardToDeck(Card* newCard)
 {
   for (int i = 0; i < 5; i++) {
-    if (!cardDeck[i]) {
+    if (!cardDeck[i] || cardDeck[i]==nullptr) {
       cardDeck[i] = newCard;
       break;
     }
   }
+}
+
+void User::addCardToCollection(int index)
+{
+  Card* cardToAdd = CardLibrary::returnInstance()->returnList()->at(index);
+  cardCollection.addItem(cardToAdd);
 }
 
 Card* User::returnCardDeck(int index)
@@ -79,16 +102,6 @@ int User::checkCardInCollection(Card* cardToCheck)
 void User::replaceCardinDeck(int toReplace, Card* newCard)
 {
   cardDeck[toReplace] = newCard;
-}
-
-int User::getWins()
-{
-  return userRecord.wins;
-}
-
-int User::getLosses()
-{
-  return userRecord.losses;
 }
 
 std::vector<Card*>* User::returnCardCollection()
