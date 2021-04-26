@@ -7,7 +7,6 @@ UserMenuWindow::UserMenuWindow(HINSTANCE hInsantce, int width, int height, User*
 //Destructor and deleting current user
 UserMenuWindow::~UserMenuWindow()
 {
-  delete currentMenuUser;
 }
 //OnDraw Method to draw the main menu buttons and allow for drawing the record of a user and randomizing the cards drawn from their deck and the card library
 void UserMenuWindow::onDraw()

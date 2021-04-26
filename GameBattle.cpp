@@ -20,9 +20,7 @@ GameBattle::GameBattle() {
 //GameBattle destructor 
 GameBattle::~GameBattle()
 {
-  delete currentUser;
-  delete userCardDeck;
-  delete opponentCardDeck;
+  
 }
 
 //Function overhead for applying stat changes
