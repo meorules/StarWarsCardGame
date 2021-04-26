@@ -1,11 +1,16 @@
 #include "CardLibrary.h"
-
+//Setting instance to nullptr
 CardLibrary* CardLibrary::instance = nullptr;
-
+//Private Constructor 
 CardLibrary::CardLibrary() {
   cardDatabase = new listTemplate<Card*>();
 }
+//Deleting the stuff inside the instance before deleting the instance itself
+CardLibrary::~CardLibrary()
+{
+}
 
+//Lazy Initialization and loading of cards
 CardLibrary* CardLibrary::returnInstance()
 {
 
@@ -16,6 +21,7 @@ CardLibrary* CardLibrary::returnInstance()
   return instance;
 }
 
+//Deleting the singleton as soon as it is no longer needed
 void CardLibrary::releaseInstance()
 {
   for (int i = 0; i < CardLibrary::returnInstance()->returnList()->size(); i++){
@@ -23,18 +29,14 @@ void CardLibrary::releaseInstance()
   }
   delete instance;
 }
-
+//Returning the list of cards
 vector<Card*>* CardLibrary::returnList()
 {
   return cardDatabase->returnList();;
 }
-
+//Loading in the cards from the text file and adding them to the library
 void CardLibrary::loadCards()
 {
-  //if (returnInstance()->cardDatabase->returnList()->size() > 0) {
-  //  //need to save and reload cards per user
-  //  returnInstance()->cardDatabase->returnList()->clear();
-  //}
   ifstream fin;
   string fileName = ".\\saveData\\Cards.txt";
   fin.open(fileName);
@@ -68,7 +70,7 @@ void CardLibrary::loadCards()
   fin.close();
 }
 
-
+//Generating the randomized card collection to be sent back to users or opponents when generating collections for new users
 std::vector<Card*> CardLibrary::generateCardCollection(int size)
 {
   vector<Card*> cardCollection;
@@ -86,6 +88,3 @@ std::vector<Card*> CardLibrary::generateCardCollection(int size)
   return cardCollection;
 }
 
-CardLibrary::~CardLibrary()
-{
-}

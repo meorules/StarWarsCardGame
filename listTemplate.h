@@ -16,7 +16,7 @@ public:
 
   //Basic methods used in vector management
   int findItem(listType itemToFind);
-  bool deleteItem (listType username);
+  bool deleteItem (listType name);
   void addItem(listType newItem);
 
   //Returning the vector itself if need be
@@ -67,9 +67,9 @@ inline vector<listType>* listTemplate<listType>::returnList()
 
 //Deleting items (Although not used) 
 template<class listType>
-inline bool listTemplate<listType>::deleteItem(listType username)
+inline bool listTemplate<listType>::deleteItem(listType name)
 {
-  int found = findItem(username);
+  int found = findItem(name);
   if (found != -1) {
     list.erase(found+list.begin());
     return true;

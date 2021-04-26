@@ -1,5 +1,6 @@
 #include "CardBattleWindow.h"
 
+//Card Battle window constructor calling Window constructor and setting battle up and setting selected options to none
 CardBattleWindow::CardBattleWindow(HINSTANCE hInsantce, int width, int height, User* currentUser) : Window(hInsantce, width, height), currentMenuUser(currentUser)
 {
   createWindow(hInsantce, width, height);
@@ -8,11 +9,13 @@ CardBattleWindow::CardBattleWindow(HINSTANCE hInsantce, int width, int height, U
   selectedUserCardType = cardType::none;
 }
 
+//A destructor to clear the current user in battle
 CardBattleWindow::~CardBattleWindow()
 {
-  
+  delete currentMenuUser;
 }
 
+//The ondraw functions to draw the menu
 void CardBattleWindow::onDraw()
 {
   drawBitmap(backgroundFile, 0, 0, width, height);
@@ -118,7 +121,7 @@ void CardBattleWindow::onDraw()
     }
   }
 
-  //Drawing the selected ability
+  //Drawing the selected card stat 
   if (selectedUserCard != nullptr) {
     setFont(12, L"News Gothic Bold");
     if (selectedUserCardType == cardType::ability) {
@@ -216,12 +219,14 @@ void CardBattleWindow::onDraw()
   Window::onDraw();
 }
 
+//Oncreate to set window header
 void CardBattleWindow::onCreate()
 {
     Window::onCreate();
   SetWindowText(getHWND(), L"User Battle vs AI");
 }
 
+//OnLButton Down to set clickable buttons 
 void CardBattleWindow::onLButtonDown(UINT nFlags, int x, int y)
 {
   if (x > 1000 && x < 1085 && y>700 && y < 730) {
@@ -368,6 +373,7 @@ void CardBattleWindow::onLButtonDown(UINT nFlags, int x, int y)
   onDraw();
 }
 
+//A method to reset selected options to none, etc
 void CardBattleWindow::resetSelected()
 {
   selectedUserCard = nullptr;
@@ -375,6 +381,7 @@ void CardBattleWindow::resetSelected()
   userSelectedStat = cardStat::none;
 }
 
+//A method to get the right text based on opponent attacks
 void CardBattleWindow::opponentAttackChoices()
 {
   //Opponent Attack and user can defend unless ability card

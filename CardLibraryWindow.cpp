@@ -1,18 +1,15 @@
 #include "CardLibraryWindow.h"
 
-CardLibraryWindow::CardLibraryWindow() {
-
-}
-
+//Constructor of the window and calling the Window Constructor along with the create window method
 CardLibraryWindow::CardLibraryWindow(HINSTANCE hInsantce, int width, int height) : Window(hInsantce,width,height)
 {
   createWindow(hInsantce, width, height);
 }
-
+//The destructor 
 CardLibraryWindow::~CardLibraryWindow(){
 
 }
-
+//OnDraw to draw the cards from the library along with the back option
 void CardLibraryWindow::onDraw()
 {
 
@@ -50,14 +47,14 @@ void CardLibraryWindow::onDraw()
   Window::onDraw();
 
 }
-
+//Setting window name
 void CardLibraryWindow::onCreate()
 {
   Window::onCreate();
   SetWindowText(getHWND(), L"Card Library");
 
 }
-
+//Setting up interaction 
 void CardLibraryWindow::onLButtonDown(UINT nFlags, int x, int y)
 {
   //Main Menu Button   drawRectangle(880, 500, 85, 30, true);

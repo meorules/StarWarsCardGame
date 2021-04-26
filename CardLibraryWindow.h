@@ -11,7 +11,6 @@ class CardLibraryWindow :
 {
 public:
   //Constructor & Destructor
-  CardLibraryWindow();
   CardLibraryWindow(HINSTANCE hInsantce, int width, int height);
 
   ~CardLibraryWindow();

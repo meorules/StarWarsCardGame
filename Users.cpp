@@ -1,7 +1,8 @@
 #include "Users.h"
-
+//Setting up instance as null
 Users* Users::instance = nullptr;
 
+//Loading users from the text file and adding them to the user database along with their cards to their collections
 void Users::loadUsers()
 {
   ifstream fin;
@@ -28,6 +29,7 @@ void Users::loadUsers()
   }
 }
 
+//Saving the users back into the text file ( new users and old ones) and adding any new cards to their collection
 void Users::saveUsers()
 {
   ofstream fout;
@@ -52,6 +54,7 @@ void Users::saveUsers()
 
 }
 
+//Returning the singleton instance
 Users* Users::returnInstance()
 {
   if (instance == nullptr) {
@@ -61,45 +64,50 @@ Users* Users::returnInstance()
   return instance;
 }
 
+//Deleting the instance
 void Users::releaseInstance()
 {
   delete instance;
 }
 
-
+//Creating the list
 Users::Users()
 {
   userList = new listTemplate<User>();
 }
-
+//Function overhead for deleting users
 bool Users::deleteUser(User newUser)
 {
   return userList->deleteItem(newUser);
 }
-
+//On Deletion of the users they must be saved
 Users::~Users()
 {
   saveUsers();
+  for (int i = 0; i < instance->userList->returnList()->size(); i++) {
+    instance->deleteUser(instance->userList->returnList()->at(i));
+  }
 }
-
+//Function overhead for adding users
 void Users::addUser(User newUser)
 {
   userList->addItem(newUser);
 }
-
+//Function overhead for finding users
 int Users::findUser(User userName)
 {
   return userList->findItem(userName);
 }
 
-
+//Function overhead for returning users at position index in the database
 User* Users::returnUser(int index)
 {
   return &userList->returnList()->at(index);
 }
-
+//Checking password of user using their index (Function overhead for checking it on the specific object)
 bool Users::checkPassword(int index, string password) const
 {
   vector<User>* listOfUsers = userList->returnList();
   return listOfUsers->at(index).checkPassword(password);
+  delete listOfUsers;
 }

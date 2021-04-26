@@ -1,15 +1,18 @@
 #include "CardDeckWindow.h"
 
+//Constructor calling Window constructor and creating the window
 CardDeckWindow::CardDeckWindow(HINSTANCE hInsantce, int width, int height, User* currentUser) : Window(hInsantce, width, height), currentMenuUser(currentUser)
 {
   createWindow(hInsantce, width, height);
 
 }
-
+//Destructor deleting the only pointer
 CardDeckWindow::~CardDeckWindow()
 {
+  delete currentMenuUser;
 }
 
+//Drawing the deck and allowing swapping between cards
 void CardDeckWindow::onDraw()
 {
   drawBitmap(backgroundFile, 0, 0, width, height);
@@ -99,6 +102,7 @@ void CardDeckWindow::onDraw()
 
 }
 
+//Oncreate to set window text and some menu text
 void CardDeckWindow::onCreate()
 {
   Window::onCreate();
@@ -106,6 +110,7 @@ void CardDeckWindow::onCreate()
   outputText = "Select two cards to swap";
 }
 
+//interaction with menu
 void CardDeckWindow::onLButtonDown(UINT nFlags, int x, int y)
 {
   //back to user menu button   drawRectangle(880, 700, 85, 30, true);

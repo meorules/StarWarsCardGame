@@ -1,13 +1,14 @@
 
 #include "MainMenuWindow.h"
 
-
+//Main Menu Window Constructor which calls the window constructor and creates the window along with setting the current state to browsing
 MainMenuWindow::MainMenuWindow(HINSTANCE hInsantce, int width, int height) : Window(hInsantce, width, height)
 {
   createWindow(hInstance, width, height);
   currentState = currentstate::browsing;
 }
 
+//Drawing the main menu buttons and the text fields 
 void MainMenuWindow::onDraw() {
 
   drawBitmap(backgroundFile, 0, 0, 600, 400);
@@ -54,6 +55,7 @@ void MainMenuWindow::onDraw() {
   Window::onDraw();
 }
 
+//Setting menu text and window title
 void MainMenuWindow::onCreate()
 {
   Window::onCreate();
@@ -61,7 +63,7 @@ void MainMenuWindow::onCreate()
   SetWindowText(getHWND(), L"Main Menu");
 
 }
-
+//Adding functionality to the window buttons and adding users when need be and preforming checks so user names and passwords are not blank
 void MainMenuWindow::onLButtonDown(UINT nFlags, int x, int y)
 {
   //Collecting Username
@@ -90,7 +92,6 @@ void MainMenuWindow::onLButtonDown(UINT nFlags, int x, int y)
     }
   }
   //Login Button  drawRectangle(370, 225, 60, 30, true);
-  //NEEDS TO BE WORKED ON 
   else if (x > 370 && x < 430 && y>225 && y < 255) {
     int found= Users::returnInstance()->findUser(User(currentusernamefield));
     if (found!=-1) {
@@ -121,7 +122,7 @@ void MainMenuWindow::onLButtonDown(UINT nFlags, int x, int y)
   }
   onDraw();
 }
-
+//onChar used to get the typed string of characters used in the username and password typing
 void MainMenuWindow::onChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 

@@ -1,5 +1,5 @@
 #include "GameBattle.h"
-
+//Game battle class constructor which takes in the user and uses it to create the opponent, copy their decks and set the user's turn to true
 GameBattle::GameBattle(User* user) : userScore(0),opponentScore(0)
 {
   currentUser = user;
@@ -13,17 +13,19 @@ GameBattle::GameBattle(User* user) : userScore(0),opponentScore(0)
   }
   userTurn = true;
 }
-
+//GameBattle empty constructor used for conversion and use in creating the gamebattle then setting it to new using the other constructor
 GameBattle::GameBattle() {
 
 }
-
+//GameBattle destructor 
 GameBattle::~GameBattle()
 {
-
+  delete currentUser;
+  delete userCardDeck;
+  delete opponentCardDeck;
 }
 
-
+//Function overhead for applying stat changes
 void GameBattle::applyStatChange(int statToChange, int change, bool isUser)
 {
   FightingCard* fC = nullptr;
@@ -48,16 +50,19 @@ void GameBattle::applyStatChange(int statToChange, int change, bool isUser)
   }
 }
 
+//Returning the card from the deck in the index specified for the opponent
 Card* GameBattle::getOpponentDeck(int index)
 {
   return opponentCardDeck[index];
 }
 
+//Returning the card from the deck in the index specified for the user
 Card* GameBattle::getUserDeck(int index)
 {
   return userCardDeck[index];
 }
 
+//Removing the card passed and then the bool determines whether to remove it from the user's or opponent's deck
 void GameBattle::removeCard(Card* toRemove, bool isUser)
 {
   if (isUser) {
@@ -90,6 +95,7 @@ void GameBattle::removeCard(Card* toRemove, bool isUser)
   }
 }
 
+//Removing the first available card and the bool determines whether from the user's or opponent's deck
 void GameBattle::removeCard(bool isUser)
 {
   if (isUser) {
@@ -110,6 +116,7 @@ void GameBattle::removeCard(bool isUser)
   }
 }
 
+//The opponent attack which is returned to the card battle window for action and text proccessing, it finds the best option for the AI
 oppAttack GameBattle::opponentAttack()
 {
   oppAttack toReturn;
@@ -125,6 +132,7 @@ oppAttack GameBattle::opponentAttack()
   return toReturn;
 }
 
+//The Opponent defend which finds the best card to defend with based on the stat passed and passes that card back
 FightingCard* GameBattle::opponentDefend(cardStat toDefend)
 {
   FightingCard* fC = nullptr;
@@ -142,6 +150,8 @@ FightingCard* GameBattle::opponentDefend(cardStat toDefend)
   return maxCard;
 }
 
+//The card battle class which takes the user's card along with their chosen attack stat and then appropriately calls the opponent defend class
+//And returns the required string text for the window
 string GameBattle::cardBattle(Card* userCard, cardStat competingStat)
 {
   FightingCard* opponentCard = opponentDefend(competingStat);
@@ -174,7 +184,8 @@ string GameBattle::cardBattle(Card* userCard, cardStat competingStat)
   }
   
 }
-
+//The game end method which checks the current state of the battle and returns an int to confirm what is happening and whether
+// the battle is continuing or whether the user has lost, won or drawn
 int GameBattle::gameEnd()
 {
   bool gameResult = false;
@@ -209,6 +220,7 @@ int GameBattle::gameEnd()
   return -1;
 }
 
+//Looks through the opponent's deck to find an ability card and if it does not returns -1
 int GameBattle::findFirstOpponentAbility()
 {
   for (int i = 0; i < opponentCardDeckSize; i++) {
@@ -219,6 +231,7 @@ int GameBattle::findFirstOpponentAbility()
   return -1;
 }
 
+//Looks through the opponent's cards to find the highes stat amongst all the cards they have and returns both that card, its type and the stat
 oppAttack GameBattle::findBestOpponentStat()
 {
   FightingCard* fC = nullptr;

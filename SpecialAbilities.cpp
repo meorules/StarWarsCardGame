@@ -1,15 +1,21 @@
 #include "SpecialAbilities.h"
 
+//Setting the instance to nullptr
 SpecialAbilities* SpecialAbilities::instance = nullptr;
 
+//Constructor setting up the list
 SpecialAbilities::SpecialAbilities() {
   abilities = new listTemplate<SpecialAbility>;
 }
-
+//Destructor
 SpecialAbilities::~SpecialAbilities()
 {
+  for (int i = 0; i < instance->returnList()->size(); i++) {
+    instance->abilities->deleteItem(instance->returnList()->at(i));
+  }
+  delete abilities;
 }
-
+//Lazy Initialization and returning of the instance
 SpecialAbilities* SpecialAbilities::returnInstance()
 {
   if (instance == nullptr) {
@@ -19,21 +25,24 @@ SpecialAbilities* SpecialAbilities::returnInstance()
   return instance;
 }
 
+//Deleting the singleton instance
 void SpecialAbilities::releaseInstance()
 {
   delete instance;
 }
 
+//Returning the special abilities list ( Function overhead)
 vector<SpecialAbility>* SpecialAbilities::returnList()
 {
   return abilities->returnList();;
 }
-
+//Function overhead for finding items
 int SpecialAbilities::findAbility(SpecialAbility ability)
 {
   return abilities->findItem(ability);
 }
 
+//Loading abilities from the text file SpecialAbilities.txt and adding them into the abilities list
 void SpecialAbilities::loadAbilities()
 {
   ifstream fin;

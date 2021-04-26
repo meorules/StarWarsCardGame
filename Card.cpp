@@ -1,5 +1,6 @@
 #include "Card.h"
 
+//Card Constructor which takes string card images and turns them into wchar_t for storage and drawing purposes
 Card::Card(string cardId, string cardImageS,bool good) :cardId(cardId), good(good),x1(0),x2(0),y1(0),y2(0)
 {
   cardImageS = ".\\imageAssets\\" + cardImageS + ".bmp";
@@ -7,15 +8,18 @@ Card::Card(string cardId, string cardImageS,bool good) :cardId(cardId), good(goo
   MultiByteToWideChar(CP_ACP, 0, cardImageS.c_str(), -1, cardImage, cardImageS.size() + 1);
 }
 
+//Constructor for construction of card objects before passing them already filled card objects to fill them
 Card::Card() {
 
 }
+
+//Destructor to delete the cardImage since it is a pointer
 Card::~Card()
 {
   delete cardImage;
 }
 
-
+//Drawing the basic card specifics including the colours, images and names
 void Card::draw(EasyGraphics* canvas,int x, int y, int width, int height)
 {
   x1 = x;
@@ -40,11 +44,12 @@ void Card::draw(EasyGraphics* canvas,int x, int y, int width, int height)
   canvas->drawText(cardId.c_str(),x+10,y+1);
 }
 
+//Operator overloading to check name as and when searching
 bool Card::operator==(const Card& rhs) const
 {
   return this->cardId==rhs.cardId;
 }
-
+//Hit test to return when cards are selected
 bool Card::hitTest(int x, int y)
 {
   if (x > x1 && x<x2 && y>y1 && y < y2) {
@@ -54,7 +59,7 @@ bool Card::hitTest(int x, int y)
     return false;
   }
 }
-
+//Returning the card name for drawing
 std::string Card::getCardName()
 {
   return cardId;

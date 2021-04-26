@@ -1,14 +1,15 @@
 #include "UserMenuWindow.h"
-
+//Constructor and calling Window constructor
 UserMenuWindow::UserMenuWindow(HINSTANCE hInsantce, int width, int height, User* currentUser) : Window(hInsantce, width, height),currentMenuUser(currentUser)
 {
   createWindow(hInsantce, width, height);
 }
-
+//Destructor and deleting current user
 UserMenuWindow::~UserMenuWindow()
 {
+  delete currentMenuUser;
 }
-
+//OnDraw Method to draw the main menu buttons and allow for drawing the record of a user and randomizing the cards drawn from their deck and the card library
 void UserMenuWindow::onDraw()
 {
 
@@ -81,7 +82,7 @@ void UserMenuWindow::onDraw()
 
   Window::onDraw();
 }
-
+//To set the timer and allow for the redrawing and also to get a seed for the randomness
 void UserMenuWindow::onCreate()
 {
   Window::onCreate();
@@ -89,7 +90,7 @@ void UserMenuWindow::onCreate()
   setTimer(REDRAW_TIMER_ID, 3000);
   srand(time(NULL));
 }
-
+//Creating interactability between the buttons and their functions
 void UserMenuWindow::onLButtonDown(UINT nFlags, int x, int y)
 {
   //Main Menu Button   drawRectangle(475,300 , 85, 30, true);
@@ -114,7 +115,7 @@ void UserMenuWindow::onLButtonDown(UINT nFlags, int x, int y)
     delete main;
   }
 }
-
+//The onTimer which calls onDraw to draw new different cards to the screen
 void UserMenuWindow::onTimer(UINT nIDEvent)
 {
   if (nIDEvent == REDRAW_TIMER_ID)
