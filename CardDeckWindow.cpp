@@ -9,7 +9,7 @@ CardDeckWindow::CardDeckWindow(HINSTANCE hInsantce, int width, int height, User*
 //Destructor deleting the only pointer
 CardDeckWindow::~CardDeckWindow()
 {
-  delete currentMenuUser;
+
 }
 
 //Drawing the deck and allowing swapping between cards

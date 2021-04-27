@@ -67,6 +67,7 @@ Users* Users::returnInstance()
 //Deleting the instance
 void Users::releaseInstance()
 {
+  saveUsers();
   delete instance;
 }
 
@@ -83,7 +84,6 @@ bool Users::deleteUser(User newUser)
 //On Deletion of the users they must be saved
 Users::~Users()
 {
-  saveUsers();
   for (int i = 0; i < instance->userList->returnList()->size(); i++) {
     instance->deleteUser(instance->userList->returnList()->at(i));
   }
